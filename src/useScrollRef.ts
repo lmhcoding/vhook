@@ -10,6 +10,6 @@ export function useScrollRef(): IScrollState {
   const state = useScroll(target)
   return {
     target,
-    ...state,
+    ...state
   }
 }

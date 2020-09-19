@@ -12,7 +12,7 @@ export function useScroll(target: Target): ScrollState {
   }
   const state = reactive({
     x: 0,
-    y: 0,
+    y: 0
   })
   const eventTarget = useEvent(
     'scroll',

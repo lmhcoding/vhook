@@ -1,19 +1,19 @@
 /* eslint-disable no-redeclare */
 import { Ref, onMounted, onUnmounted, isRef, getCurrentInstance } from 'vue'
 
-type Target = Ref<EventTarget> | EventTarget | string
+export type Target = Ref<EventTarget | null> | EventTarget | string
 
-interface WindowEventHandler<T extends keyof WindowEventMap> {
+export interface WindowEventHandler<T extends keyof WindowEventMap> {
   (this: Window, e: WindowEventMap[T]): any
 }
 
-interface DocumentEventHandler<T extends keyof DocumentEventMap> {
+export interface DocumentEventHandler<T extends keyof DocumentEventMap> {
   (this: Document, e: DocumentEventMap[T]): any
 }
 
-type HandlerOptions = boolean | AddEventListenerOptions
-type DocumentEvents = keyof DocumentEventMap
-type WindowEvents = keyof WindowEventMap
+export type HandlerOptions = boolean | AddEventListenerOptions
+export type DocumentEvents = keyof DocumentEventMap
+export type WindowEvents = keyof WindowEventMap
 
 function getTarget(target: Target): EventTarget | null {
   if (!target) {

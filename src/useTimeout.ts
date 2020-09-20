@@ -3,11 +3,14 @@ import { ref } from 'vue'
 export function useTimeout(delay = 1000, immediate = true) {
   const ready = ref(false)
   let timer: any
-  const initTimeout = () => {
-    ready.value = false
+  const stop = () => {
     if (timer) {
       clearTimeout(timer)
     }
+  }
+  const initTimeout = () => {
+    ready.value = false
+    stop()
     timer = window.setTimeout(() => {
       ready.value = true
       timer = null
@@ -17,6 +20,7 @@ export function useTimeout(delay = 1000, immediate = true) {
 
   return {
     ready,
-    start: () => initTimeout()
+    start: () => initTimeout(),
+    stop
   }
 }

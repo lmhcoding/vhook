@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { getCurrentInstance, onUnmounted, ref } from 'vue'
 
 export function useTimeout(delay = 1000, immediate = true) {
   const ready = ref(false)
@@ -17,6 +17,8 @@ export function useTimeout(delay = 1000, immediate = true) {
     }, delay)
   }
   immediate && initTimeout()
+
+  getCurrentInstance() && onUnmounted(stop)
 
   return {
     ready,

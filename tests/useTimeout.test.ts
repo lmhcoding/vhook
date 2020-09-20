@@ -1,4 +1,5 @@
 import { useTimeout } from '../src/useTimeout'
+import invokeHook from './util/invokeHook'
 
 beforeEach(() => {
   jest.useFakeTimers()
@@ -37,5 +38,13 @@ test('setTimeout should be called after calling start when immediate is false', 
 test('setTimeout should be clear after calling stop', () => {
   const { stop } = useTimeout()
   stop()
+  expect(clearTimeout).toHaveBeenCalledTimes(1)
+})
+
+test('timeout should be clear when component is unmount', () => {
+  const wrapper = invokeHook(() => {
+    useTimeout(1000, true)
+  })
+  wrapper.unmount()
   expect(clearTimeout).toHaveBeenCalledTimes(1)
 })

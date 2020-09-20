@@ -1,4 +1,4 @@
-import { useTimeout } from '../src/useTimeout' 
+import { useTimeout } from '../src/useTimeout'
 
 beforeEach(() => {
   jest.useFakeTimers()
@@ -32,4 +32,10 @@ test('setTimeout should be called after calling start when immediate is false', 
   expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000)
   jest.advanceTimersByTime(1000)
   expect(ready.value).toBeTruthy()
+})
+
+test('setTimeout should be clear after calling stop', () => {
+  const { stop } = useTimeout()
+  stop()
+  expect(clearTimeout).toHaveBeenCalledTimes(1)
 })

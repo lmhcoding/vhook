@@ -1,23 +1,23 @@
-import { ref, Ref } from 'vue'
+import { ref, Ref, DeepReadonly, readonly } from 'vue'
 
 export type ToggleParamType = string | number | boolean | undefined | null
 
-export interface ToggleReturn<T extends ToggleParamType = ToggleParamType> {
-  state: Ref<T>
+export interface ToggleReturn {
+  state: DeepReadonly<Ref<boolean>>
   toggle: (next?: boolean) => void
   setDefault: () => void
   setRight: () => void
 }
 
 export interface ITwoType<T extends ToggleParamType = ToggleParamType, U extends ToggleParamType = ToggleParamType>
-  extends Omit<ToggleReturn<T>, 'state' | 'toggle'> {
-  state: Ref<T | U>
+  extends Omit<ToggleReturn, 'state' | 'toggle'> {
+  state: DeepReadonly<Ref<T | U>>
   toggle: (next?: T | U) => void
 }
 
 export interface IToggle {
-  (): ToggleReturn<boolean>
-  <T extends ToggleParamType = ToggleParamType>(defaultValue: T): ToggleReturn<T>
+  (): ToggleReturn
+  (defaultValue: boolean): ToggleReturn
   <T extends ToggleParamType = ToggleParamType, U extends ToggleParamType = ToggleParamType>(
     defaultValue: T,
     resetValue?: U
@@ -27,7 +27,7 @@ export interface IToggle {
 export const useToggle: IToggle = <
   T extends ToggleParamType = ToggleParamType,
   U extends ToggleParamType = ToggleParamType
->(
+> (
     defaultValue: T = false as T,
     reverseValue?: U
   ) => {
@@ -48,7 +48,7 @@ export const useToggle: IToggle = <
     state.value = reverseTo
   }
   return {
-    state,
+    state: readonly(state),
     setDefault,
     setRight,
     toggle

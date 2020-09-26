@@ -1,4 +1,4 @@
-import { Ref, ref } from 'vue'
+import { DeepReadonly, readonly, Ref, ref } from 'vue'
 
 function getDefaultValue<T = any>(storage: Storage, key: string, defaultValue: T) {
   const val = storage.getItem(key)
@@ -12,12 +12,9 @@ function getDefaultValue<T = any>(storage: Storage, key: string, defaultValue: T
   return defaultValue
 }
 
-export interface IStorage<T> {
-  state: Ref<T | null>
-  setState: (val?: T) => void
-}
+export type IStorage<T> = [DeepReadonly<Ref<T | null>>, (val?: T) => void]
 
-export function useStorage<T>(storage: Storage, key: string, val: T): IStorage<T> {
+export function useStorage<T>(key: string, val: T, storage: Storage = localStorage): IStorage<T> {
   const value = getDefaultValue(storage, key, val)
   const state: Ref<T | null> = ref(null)
   const setState = (val?: T) => {
@@ -30,8 +27,5 @@ export function useStorage<T>(storage: Storage, key: string, val: T): IStorage<T
     }
   }
   setState(value)
-  return {
-    state,
-    setState
-  }
+  return [readonly(state), setState]
 }

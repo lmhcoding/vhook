@@ -6,9 +6,7 @@ function testSessionStorage(val: any, newVal: any) {
     let state: Ref<string | null>
     let setState: (val?: any) => void
     beforeEach(() => {
-      const res = useSessionStorage('test', val)
-      state = res.state
-      setState = res.setState
+      [state, setState] = useSessionStorage('test', val)
     })
     test('initial value of key test in sessionStorage is 1', () => {
       expect(sessionStorage.getItem('test')).toEqual(JSON.stringify(val))

@@ -1,11 +1,19 @@
-import { getCurrentInstance, onUnmounted, ref } from 'vue'
+import { ref, readonly, DeepReadonly, Ref } from 'vue'
+import { tryOnUnmounted } from './util'
 
-export function useTimeout(delay = 1000, immediate = true) {
+export interface ITimeoutResult {
+  ready: DeepReadonly<Ref<boolean>>
+  start: () => void
+  stop: () => void
+}
+
+export function useTimeout(delay = 1000, immediate = true): ITimeoutResult {
   const ready = ref(false)
   let timer: any
   const stop = () => {
     if (timer) {
       clearTimeout(timer)
+      timer = null
     }
   }
   const initTimeout = () => {
@@ -18,10 +26,12 @@ export function useTimeout(delay = 1000, immediate = true) {
   }
   immediate && initTimeout()
 
-  getCurrentInstance() && onUnmounted(stop)
+  tryOnUnmounted(() => {
+    stop()
+  })
 
   return {
-    ready,
+    ready: readonly(ready),
     start: () => initTimeout(),
     stop
   }

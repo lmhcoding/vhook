@@ -1,14 +1,15 @@
 import { Ref } from 'vue'
 import { useStorage } from '../src/useStorage'
+import invokeHook from './util/invokeHook'
 
 function testStorageWithSimpleVal (storage: Storage) {
   describe('test useStorage when storage is storage and val is not an Object', () => {
     let state: Ref<string | null>
     let setState: (val?: string) => void
     beforeEach(() => {
-      const res = useStorage(storage, 'test', '1')
-      state = res.state
-      setState = res.setState
+      invokeHook(() => {
+        [state, setState] = useStorage('test', '1', storage)
+      })
     })
     test('initial value of key test in storage is 1', () => {
       expect(storage.getItem('test')).toBe(JSON.stringify('1'))
@@ -38,9 +39,7 @@ function testStorageWithObject (storage: Storage) {
     let state: Ref<{ a: number} | null>
     let setState: (val?: { a: number }) => void
     beforeEach(() => {
-      const res = useStorage(storage, 'test', { a: 1 })
-      state = res.state
-      setState = res.setState
+      [state, setState] = useStorage('test', { a: 1 }, storage)
     })
     test('initial value of key test in storage is 1', () => {
       expect(storage.getItem('test')).toBe(JSON.stringify({ a: 1 }))

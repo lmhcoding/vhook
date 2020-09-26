@@ -6,9 +6,7 @@ function testLocalStorage(val: any, newVal: any) {
     let state: Ref<string | null>
     let setState: (val?: any) => void
     beforeEach(() => {
-      const res = useLocalStorage('test', val)
-      state = res.state
-      setState = res.setState
+      [state, setState] = useLocalStorage('test', val)
     })
     test('initial value of key test in localStorage is 1', () => {
       expect(localStorage.getItem('test')).toEqual(JSON.stringify(val))

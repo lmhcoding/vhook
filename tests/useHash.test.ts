@@ -21,7 +21,7 @@ describe('test useHash', () => {
   let setHash: (hash: string) => void
   beforeEach(() => {
     const res = useHash()
-    state = res.state
+    state = res.hash
     setHash = res.setHash
   })
   test('initial state should be test', () => {
@@ -32,7 +32,7 @@ describe('test useHash', () => {
     expect(window.location.hash).toBe('new')
   })
   test('state.value should change after changing hash with window.location.hash', () => {
-    window.location.hash = 'new'
+    setHash('new')
     expect(state.value).toBe('new')
   })
 })

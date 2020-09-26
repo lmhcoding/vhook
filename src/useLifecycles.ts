@@ -1,12 +1,10 @@
-import { getCurrentInstance, onMounted, onUnmounted } from 'vue'
+import { tryOnMounted, tryOnUnmounted } from './util'
 
 interface Callback {
   (): any
 }
 
 export function useLifecycles(mountedCb: Callback, unmountCb: Callback): void {
-  if (getCurrentInstance()) {
-    mountedCb && onMounted(mountedCb)
-    unmountCb && onUnmounted(unmountCb)
-  }
+  tryOnMounted(mountedCb)
+  tryOnUnmounted(unmountCb)
 }

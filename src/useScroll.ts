@@ -1,29 +1,21 @@
-import { reactive, toRefs, ToRefs } from 'vue'
-import { useEvent, Target } from './useEvent'
+import { DeepReadonly, readonly, ref, Ref } from 'vue'
+import { useEvent } from './useEvent'
 
-export type ScrollState = ToRefs<{
-  x: number
-  y: number
-}>
+export type IScrollResult = [DeepReadonly<Ref<number>>, DeepReadonly<Ref<number>>, () => void]
 
-export function useScroll(target: Target): ScrollState {
-  if (target === window && process.env.NODE_ENV !== 'production') {
-    throw Error('target of useScroll should not be window')
-  }
-  const state = reactive({
-    x: 0,
-    y: 0
-  })
-  const eventTarget = useEvent(
+export function useScroll(target: string | Element | Ref<Element | null>): IScrollResult {
+  const x = ref(0)
+  const y = ref(0)
+  const [eventTarget, clear] = useEvent(
     'scroll',
     () => {
       if (eventTarget.value) {
-        state.x = ((eventTarget.value as unknown) as Element).scrollLeft
-        state.y = ((eventTarget.value as unknown) as Element).scrollTop
+        x.value = ((eventTarget.value as unknown) as Element).scrollLeft
+        y.value = ((eventTarget.value as unknown) as Element).scrollTop
       }
     },
     { capture: false, passive: true },
     target
   )
-  return toRefs(state)
+  return [readonly(x), readonly(y), clear]
 }

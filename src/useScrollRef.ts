@@ -1,15 +1,12 @@
-import { ref, Ref } from 'vue'
-import { useScroll, ScrollState } from './useScroll'
+import { DeepReadonly, ref, Ref } from 'vue'
+import { useScroll } from './useScroll'
 
-interface IScrollState extends ScrollState {
-  target: Ref<Element>
-}
+type ScrollState = DeepReadonly<Ref<number>>
 
-export function useScrollRef(): IScrollState {
-  const target: Ref<Element> = (ref(null) as unknown) as Ref<Element>
+export type IScrollResult = [Ref<Element | null>, ScrollState, ScrollState, () => void]
+
+export function useScrollRef(): IScrollResult {
+  const target: Ref<Element | null> = ref(null)
   const state = useScroll(target)
-  return {
-    target,
-    ...state
-  }
+  return [target, ...state]
 }

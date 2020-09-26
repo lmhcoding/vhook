@@ -55,7 +55,7 @@ test('interval will be start after invoking start', () => {
   clear!()
   expect(clearInterval).toHaveBeenCalledTimes(1)
   expect(clearInterval).toHaveBeenCalledWith(expect.any(Number))
-  start()
+  start!()
   expect(setInterval).toHaveBeenCalled()
   expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 500)
   jest.advanceTimersByTime(500)

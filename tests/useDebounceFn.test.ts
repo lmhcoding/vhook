@@ -1,11 +1,13 @@
 import { nextTick } from 'vue'
 import { useDebounceFn } from '../src/useDebounceFn'
 
-let callback: Function | null
+let callback: (...rest: any[]) => any
 
 beforeEach(() => {
   jest.useFakeTimers()
-  callback = jest.fn()
+  callback = jest.fn((s: string) => {
+    console.log(s)
+  })
 })
 
 afterEach(() => {
@@ -36,8 +38,10 @@ test('timer should be cleared when calling the function returned by useDebounceF
 
 test('callback should be called when timeout', async () => {
   const debounceFn = useDebounceFn(callback!)
-  debounceFn()
+  debounceFn('1')
+  debounceFn('2')
   jest.advanceTimersByTime(200)
   await nextTick()
   expect(callback!).toHaveBeenCalledTimes(1)
+  expect(callback!).toHaveBeenCalledWith('2')
 })

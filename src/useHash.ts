@@ -1,7 +1,12 @@
-import { ref } from 'vue'
+import { ref, readonly, DeepReadonly, Ref } from 'vue'
 import { useEvent } from './useEvent'
 
-export function useHash() {
+export interface IHashResult {
+  hash: DeepReadonly<Ref<string>>
+  setHash: (hash: string) => void
+}
+
+export function useHash(): IHashResult {
   const state = ref(window.location.hash)
 
   const setHash = (hash: string) => {
@@ -15,7 +20,7 @@ export function useHash() {
   }
   useEvent('hashchange', onHashChange)
   return {
-    state,
+    hash: readonly(state),
     setHash
   }
 }

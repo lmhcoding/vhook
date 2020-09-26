@@ -1,4 +1,5 @@
-import { ref, onUnmounted, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { tryOnUnmounted } from './util'
 
 export function useTitle(title: string, restoreOnUnMount = false) {
   const cache = document.title
@@ -7,7 +8,7 @@ export function useTitle(title: string, restoreOnUnMount = false) {
     document.title = titleRef.value
   })
   if (restoreOnUnMount) {
-    onUnmounted(() => {
+    tryOnUnmounted(() => {
       document.title = cache
     })
   }

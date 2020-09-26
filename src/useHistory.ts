@@ -55,10 +55,22 @@ function buildState(): IHistoryState {
   }
 }
 
-export function useHistory(): ToRefs<IHistoryState> {
+export interface IHistoryResult extends ToRefs<IHistoryState> {
+  clear: () => void
+}
+
+export function useHistory(): IHistoryResult {
   const state: UnwrapRef<IHistoryState> = reactive(buildState())
-  useEvent('popstate', buildState)
-  useEvent('pushstate' as any, buildState)
-  useEvent('replacestate' as any, buildState)
-  return toRefs(state)
+  const [, clearPopStateListener] = useEvent('popstate', buildState)
+  const [, clearPushStateListener] = useEvent('pushstate' as any, buildState)
+  const [, clearReplaceStateListener] = useEvent('replacestate' as any, buildState)
+  const clear = () => {
+    clearPopStateListener()
+    clearPushStateListener()
+    clearReplaceStateListener()
+  }
+  return {
+    ...toRefs(state),
+    clear
+  }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-redeclare */
-import { Ref, onMounted, onUnmounted, isRef, getCurrentInstance, shallowRef } from 'vue'
-
-export type Target = Ref<EventTarget | null> | EventTarget | string
+import { Target, getTarget } from './util'
+import { useLifecycles } from './useLifecycles'
+import { isRef, watchEffect } from 'vue'
 
 export interface WindowEventHandler<T extends keyof WindowEventMap> {
   (this: Window, e: WindowEventMap[T]): any
@@ -14,24 +14,6 @@ export interface DocumentEventHandler<T extends keyof DocumentEventMap> {
 export type HandlerOptions = boolean | AddEventListenerOptions
 export type DocumentEvents = keyof DocumentEventMap
 export type WindowEvents = keyof WindowEventMap
-
-function getTarget(target: Target): EventTarget {
-  if (!target) {
-    return window
-  }
-  if (typeof target === 'string') {
-    const dom = document.querySelector(target)
-    if (!dom && process.env.NODE_ENV !== 'production') {
-      console.error('target is not found')
-      throw Error(`target of selector ${target} is not found`)
-    }
-    return dom!
-  }
-  if (isRef(target)) {
-    return target.value!
-  }
-  return target
-}
 
 function registerEvent(
   target: Target,
@@ -46,23 +28,29 @@ function registerEvent(
   return eventTarget
 }
 
+export interface IEventTarget {
+  readonly value: EventTarget | null
+}
+
+export type IEventResult = [IEventTarget, () => void]
+
 export function useEvent<T extends WindowEvents>(
   event: T,
   handler: WindowEventHandler<T>,
   options?: HandlerOptions
-): Ref<EventTarget>
+): IEventResult
 export function useEvent<T extends DocumentEvents>(
   event: T,
   handler: DocumentEventHandler<T>,
   options?: HandlerOptions,
   target?: Target
-): Ref<EventTarget>
+): IEventResult
 export function useEvent<T extends DocumentEvents>(
   event: T,
   handler: DocumentEventHandler<T>,
   options?: HandlerOptions,
   target?: string
-): Ref<EventTarget>
+): IEventResult
 export function useEvent(
   event: string,
   cb: EventListenerOrEventListenerObject,
@@ -72,24 +60,37 @@ export function useEvent(
   if (!event || !cb) {
     return
   }
-  const eventTarget: Ref<EventTarget | null> = shallowRef(null)
+  let eventTarget: EventTarget | null = null
   function register() {
-    eventTarget.value = registerEvent(target, event, cb, options)
+    eventTarget = registerEvent(target, event, cb, options)
   }
-  const currentInstance = getCurrentInstance()
-  if (currentInstance) {
-    if (currentInstance.isMounted) {
-      register()
-    } else {
-      onMounted(() => {
-        register()
-      })
+  function clear() {
+    if (eventTarget) {
+      eventTarget.removeEventListener(event, cb, options)
+      eventTarget = null
     }
-    onUnmounted(() => {
-      if (eventTarget.value) {
-        eventTarget.value.removeEventListener(event, cb)
-      }
-    })
   }
-  return eventTarget
+  useLifecycles(
+    () => {
+      if (isRef(target)) {
+        watchEffect((onInvalidate) => {
+          register()
+          onInvalidate(() => {
+            clear()
+          })
+        })
+      } else {
+        register()
+      }
+    },
+    () => {
+      clear()
+    }
+  )
+  const targetDom = {
+    get value() {
+      return eventTarget
+    }
+  }
+  return [targetDom, clear]
 }

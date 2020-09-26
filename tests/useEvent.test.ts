@@ -1,68 +1,132 @@
-import { mount, VueWrapper } from '@vue/test-utils'
-import { defineComponent, ref, Ref } from 'vue'
-import { useEvent } from '../src/useEvent'
+import { VueWrapper } from '@vue/test-utils'
+import { nextTick, onMounted, Ref, ref } from 'vue'
+import { IEventTarget, useEvent } from '../src/useEvent'
+import { Target } from '../src/util'
+import invokeHook from './util/invokeHook'
 
-const props = {
-  name: 'resize' as 'resize',
-  handler: jest.fn(),
-  target: {
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn()
-  } as unknown as EventTarget
+function patchEventTarget () {
+  const div: any = document.createElement('div')
+  let proto = Object.getPrototypeOf(div)
+  while (proto) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (proto.hasOwnProperty('addEventListener')) {
+      const originAdd = proto.addEventListener
+      const originRemove = proto.removeEventListener
+      const addEventListener = jest.fn((event, cb, options) => {
+        originAdd.call(
+          addEventListener.mock.instances[0],
+          event,
+          cb,
+          options
+        )
+      })
+      const removeEventListener = jest.fn((event, cb, options) => {
+        originRemove.call(
+          removeEventListener.mock.instances[0],
+          event,
+          cb,
+          options
+        )
+      })
+      proto.addEventListener = addEventListener
+      proto.removeEventListener = removeEventListener
+      return [addEventListener, removeEventListener]
+    }
+    proto = Object.getPrototypeOf(proto)
+  }
+  return []
 }
 
-const props1 = {
-  ...props,
-  target: ref({
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn()
-  }) as unknown as Ref<EventTarget>
+const [add, remove] = patchEventTarget()
+const handler = jest.fn()
+
+function testUseEvent(description: string, targetFn: () => Target, isRef = false) {
+  describe(description, () => {
+    let wrapper: VueWrapper<any>
+    let clear: () => void
+    let target: IEventTarget
+    let testRef: Ref<Element | null>
+    beforeEach(() => {
+      if (isRef) {
+        testRef = targetFn() as Ref<Element>
+      }
+      wrapper = invokeHook(() => {
+        onMounted(() => {
+          [target, clear] = useEvent(
+            'click',
+            handler,
+            true,
+            !isRef ? targetFn() : testRef
+          )
+        })
+        return {
+          test: testRef
+        }
+      })
+    })
+    test('target should be equal to the target parameter', () => {
+      expect(target.value).toEqual(document.getElementById('test'))
+    })
+    test('addEventListener should be called after mounted', () => {
+      expect(add).toHaveBeenCalledTimes(1)
+      expect(add).toHaveBeenCalledWith('click', handler, true)
+    })
+    test('callback should be called after firing an event', () => {
+      const target = wrapper.find('#test')
+      target.trigger('click')
+      expect(handler).toHaveBeenCalledTimes(1)
+    })
+    test('removeEventListener should be called after invoking clear', () => {
+      clear()
+      expect(remove).toHaveBeenCalledTimes(1)
+      expect(remove).toHaveBeenCalledWith('click', handler, true)
+    })
+    test('callback should not be called after invoking clear', () => {
+      const target = wrapper.find('#test')
+      clear()
+      target.trigger('click')
+      expect(handler).not.toBeCalled()
+    })
+    test('target.value should be null after invoking clear', () => {
+      clear()
+      expect(target.value).toBeNull()
+    })
+    test('event should be removed after unmounted', () => {
+      const targetDiv = wrapper.find('#test')
+      wrapper.unmount()
+      expect(remove).toHaveBeenCalledTimes(1)
+      expect(remove).toHaveBeenCalledWith('click', handler, true)
+      targetDiv.trigger('click')
+      expect(handler).not.toBeCalled()
+      expect(target.value).toBeNull()
+    })
+    if (isRef) {
+      test('removeEventListener should be called when ref is manually set to null', async () => {
+        const targetDiv = wrapper.find('#test')
+        testRef.value = null
+        await nextTick()
+        expect(remove).toHaveBeenCalledTimes(1)
+        expect(remove).toHaveBeenCalledWith('click', handler, true)
+        targetDiv.trigger('click')
+        expect(handler).not.toBeCalled()
+        expect(target.value).toBeNull()
+      })
+    }
+  })
 }
 
-describe('test useEvent when target is an EventTarget', () => {
-  let wrapper: VueWrapper<any>
-  beforeEach(() => {
-    const comp = defineComponent({
-      template: '<div>test</div>',
-      setup () {
-        useEvent(props.name, props.handler, true, props.target)
-      }
-    })
-    wrapper = mount(comp)
-  })
-  test('should call addEventListener on mount', () => {
-    expect(props.target.addEventListener).toHaveBeenCalledTimes(1)
-    expect(props.target.addEventListener).toHaveBeenCalledWith(props.name, props.handler, true)
-    expect((props.target.addEventListener as any).mock.instances).toEqual([props.target])
-  })
-  test('should call removeEventListener on unmount', () => {
-    wrapper.unmount()
-    expect(props.target.removeEventListener).toHaveBeenCalledTimes(1)
-    expect(props.target.removeEventListener).toHaveBeenCalledWith(props.name, props.handler)
-    expect((props.target.removeEventListener as any).mock.instances).toEqual([props.target])
-  })
-})
+testUseEvent(
+  'test useEvent when target is an Element',
+  () => document.getElementById('test')!
+)
 
-describe('test useEvent when target is a Ref', () => {
-  let wrapper: VueWrapper<any>
-  beforeEach(() => {
-    const comp = defineComponent({
-      template: '<div>test</div>',
-      setup () {
-        useEvent(props1.name, props1.handler, true, props1.target)
-      }
-    })
-    wrapper = mount(comp)
-  })
-  test('should call addEventListener on mount', () => {
-    expect(props1.target.value.addEventListener).toHaveBeenCalledTimes(1)
-    expect(props1.target.value.addEventListener).toHaveBeenCalledWith(props1.name, props1.handler, true)
-    expect((props1.target.value.addEventListener as any).mock.instances).toEqual([props1.target.value])
-  })
-  test('should call removeEventListener on unmount', () => {
-    wrapper.unmount()
-    expect(props1.target.value.removeEventListener).toHaveBeenCalledTimes(1)
-    expect(props1.target.value.removeEventListener).toHaveBeenCalledWith(props1.name, props1.handler)
-    expect((props1.target.value.removeEventListener as any).mock.instances).toEqual([props1.target.value])
-  })
-})
+testUseEvent(
+  'test useEvent when target is a css selector',
+  () => '#test'
+)
+
+testUseEvent(
+  'test useEvent when target is a Ref',
+  () => ref(null),
+  true
+)

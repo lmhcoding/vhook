@@ -5,8 +5,8 @@ export function useEventRef<T extends DocumentEvents>(
   event: T,
   handler: DocumentEventHandler<T>,
   options?: HandlerOptions
-): Ref<Element | null> {
+): [Ref<Element | null>, () => void] {
   const target: Ref<Element | null> = ref(null)
-  useEvent(event, handler, options, target)
-  return target
+  const [, clear] = useEvent(event, handler, options, target)
+  return [target, clear]
 }

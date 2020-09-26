@@ -35,11 +35,29 @@ test('should clearInterval when unmounted', () => {
 })
 
 test('interval should be cleared after invoking clear', () => {
-  let clear: () => void | undefined
+  let clear: () => void
   invokeHook(() => {
-    clear = useInterval(callback!, 500)
+    [clear] = useInterval(callback!, 500)
   })
   clear!()
   expect(clearInterval).toHaveBeenCalledTimes(1)
   expect(clearInterval).toHaveBeenCalledWith(expect.any(Number))
+})
+
+test('interval will be start after invoking start', () => {
+  let clear: () => void
+  let start: () => void
+  invokeHook(() => {
+    const res = useInterval(callback!, 500)
+    clear = res[0]
+    start = res[1]
+  })
+  clear!()
+  expect(clearInterval).toHaveBeenCalledTimes(1)
+  expect(clearInterval).toHaveBeenCalledWith(expect.any(Number))
+  start()
+  expect(setInterval).toHaveBeenCalled()
+  expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 500)
+  jest.advanceTimersByTime(500)
+  expect(callback).toHaveBeenCalled()
 })

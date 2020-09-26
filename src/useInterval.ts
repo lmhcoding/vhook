@@ -5,18 +5,24 @@ export function useInterval(fn: Function, delay: number, immediate = false) {
   const clear = () => {
     if (interval) {
       clearInterval(interval)
+      interval = null
+    }
+  }
+  const start = () => {
+    if (!interval) {
+      interval = setInterval(fn, delay)
     }
   }
   useLifecycles(
     () => {
       if (fn) {
         immediate && fn()
-        interval = setInterval(fn, delay)
+        start()
       }
     },
     () => {
       clear()
     }
   )
-  return clear
+  return [clear, start]
 }

@@ -13,9 +13,6 @@ stages:
   - name: lint
   - test
   - name: deploy
-matrix:
-  allow_failures: []
-  fast_finish: true
 
 jobs:
   include:
@@ -35,6 +32,8 @@ jobs:
         script:
           - yarn build
           - yarn release
+        on:
+          tags: false
 
 branches:
   only:

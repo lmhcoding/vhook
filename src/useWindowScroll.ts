@@ -1,8 +1,7 @@
 import { reactive, toRefs } from 'vue'
 import { useEvent } from './useEvent'
-import { ScrollState } from './useScroll'
 
-export function useWindowScroll(): ScrollState {
+export function useWindowScroll() {
   const state = reactive({
     x: 0,
     y: 0

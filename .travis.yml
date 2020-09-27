@@ -29,6 +29,7 @@ jobs:
     - stage: deploy
       script:
         - yarn build
+        - yarn release
       deploy:
         provider: npm
         email: '$npm_email'

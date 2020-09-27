@@ -1,6 +1,6 @@
 {
-  "name": "composition-fn",
-  "version": "1.0.0",
+  "name": "v3hook",
+  "version": "0.0.1",
   "description": "Vue Composition Function",
   "main": "lib/index.js",
   "module": "esm/index.js",

@@ -11,6 +11,10 @@
     "lib/",
     "esm/"
   ],
+  "keywords": [
+    "vue3",
+    "composition api"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",

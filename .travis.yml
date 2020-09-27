@@ -27,14 +27,14 @@ jobs:
       script:
         - yarn test
     - stage: deploy
-      script:
-        - yarn build
-        - yarn release
       deploy:
-        provider: npm
+        provider: script
         email: '$npm_email'
         api_key: '$npm_key'
         skip_cleanup: true
+        script:
+          - yarn build
+          - yarn release
 
 branches:
   only:

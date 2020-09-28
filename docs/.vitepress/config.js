@@ -49,6 +49,7 @@ const config = {
             children: [
               {text: 'useInterval', link: '/effects/useInterval'},
               {text: 'useTimeout', link: '/effects/useTimeout'},
+              {text: 'useTimeoutFn', link: '/effects/useTimeoutFn'},
             ]
           }
         ]

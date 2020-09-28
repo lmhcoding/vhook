@@ -32,7 +32,8 @@ const config = {
             text: 'Dom',
             collapsable: false,
             children: [
-              {text: 'useEvent', link: '/dom/useEvent'}
+              {text: 'useEvent', link: '/dom/useEvent'},
+              {text: 'useEventRef', link: '/dom/useEventRef'},
             ]
           }
         ]

@@ -35,6 +35,13 @@ const config = {
               {text: 'useEvent', link: '/dom/useEvent'},
               {text: 'useEventRef', link: '/dom/useEventRef'},
             ]
+          },
+          {
+            text: 'Lifecycles',
+            collapsable: false,
+            children: [
+              {text: 'useLifecycles', link: '/lifecycles/useLifecycles'}
+            ]
           }
         ]
       }

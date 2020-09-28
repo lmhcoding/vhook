@@ -24,7 +24,8 @@ const config = {
             collapsable: false,
             children: [
               {text: 'useTitle', link: '/state/useTitle'},
-              {text: 'useToggle', link: '/state/useToggle'}
+              {text: 'useToggle', link: '/state/useToggle'},
+              {text: 'useBoolean', link: '/state/useBoolean'},
             ]
           },
           {

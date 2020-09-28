@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import { useTitle } from 'composition-fn'
+  import { useTitle } from 'v3hook'
   import { ref } from 'vue'
   export default {
     setup () {

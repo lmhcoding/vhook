@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { useToggle } from 'composition-fn'
+  import { useToggle } from 'v3hook'
   export default {
     setup () {
       const {

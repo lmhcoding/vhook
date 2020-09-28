@@ -42,6 +42,13 @@ const config = {
             children: [
               {text: 'useLifecycles', link: '/lifecycles/useLifecycles'}
             ]
+          },
+          {
+            text: 'SideEffects',
+            collapsable: false,
+            children: [
+              {text: 'useInterval', link: '/effects/useInterval'}
+            ]
           }
         ]
       }

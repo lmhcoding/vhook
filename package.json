@@ -37,7 +37,14 @@
     "build": "npm-run-all build:*",
     "clean": "rimraf lib",
     "release": "semantic-release",
-    "test": "jest"
+    "test": "jest",
+    "docs": "npm-run-all -p register docs:dev",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "register": "gulp"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -59,16 +66,20 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
     "gh-pages": "^3.1.0",
+    "globby": "^11.0.1",
+    "gulp": "^4.0.2",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.3.0",
+    "lodash": "^4.17.20",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.1.1",
     "ts-jest": "^26.3.0",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "vitepress": "^0.6.0"
   },
   "config": {
     "commitizen": {

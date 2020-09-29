@@ -47,6 +47,7 @@ const config = {
             text: 'SideEffects',
             collapsable: false,
             children: [
+              {text: 'useDebounce', link: '/effects/useDebounce'},
               {text: 'useInterval', link: '/effects/useInterval'},
               {text: 'useTimeout', link: '/effects/useTimeout'},
               {text: 'useTimeoutFn', link: '/effects/useTimeoutFn'},

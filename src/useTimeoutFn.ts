@@ -5,9 +5,13 @@ export function useTimeoutFn(fn: Function, delay = 1000, immediate = true, clear
   const { start, ready, stop } = useTimeout(delay, immediate)
   let stopEffect: WatchStopHandle | undefined
   const startEffect = () => {
-    stopEffect = watch(ready, (hasReady) => {
-      hasReady && fn()
-    })
+    stopEffect = watch(
+      ready,
+      (hasReady) => {
+        hasReady && fn()
+      },
+      { flush: 'sync' }
+    )
   }
   const _stop = () => {
     clearEffectWhenStop && stopEffect!()

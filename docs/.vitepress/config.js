@@ -48,6 +48,7 @@ const config = {
             collapsable: false,
             children: [
               {text: 'useDebounce', link: '/effects/useDebounce'},
+              {text: 'useDebounceFn', link: '/effects/useDebounceFn'},
               {text: 'useInterval', link: '/effects/useInterval'},
               {text: 'useTimeout', link: '/effects/useTimeout'},
               {text: 'useTimeoutFn', link: '/effects/useTimeoutFn'},

@@ -53,6 +53,15 @@ const config = {
               {text: 'useTimeout', link: '/effects/useTimeout'},
               {text: 'useTimeoutFn', link: '/effects/useTimeoutFn'},
             ]
+          },
+          {
+            text: 'Storage',
+            collapsable: false,
+            children: [
+              {text: 'useLocalStorage', link: '/storage/useLocalStorage'},
+              {text: 'useSessionStorage', link: '/storage/useSessionStorage'},
+              {text: 'useStorage', link: '/storage/useStorage'}
+            ]
           }
         ]
       }

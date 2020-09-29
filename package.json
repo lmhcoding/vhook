@@ -1,6 +1,6 @@
 {
   "name": "v3hook",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Vue Composition Function",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -88,7 +88,7 @@
       "git add"
     ]
   },
-  "peerDependencies": {
+  "dependencies": {
     "tslib": "^2.0.1",
     "vue": "^3.0.0"
   }

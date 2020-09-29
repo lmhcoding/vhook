@@ -73,12 +73,15 @@ export function useEvent(
   useLifecycles(
     () => {
       if (isRef(target)) {
-        watchEffect((onInvalidate) => {
-          register()
-          onInvalidate(() => {
-            clear()
-          })
-        })
+        watchEffect(
+          (onInvalidate) => {
+            register()
+            onInvalidate(() => {
+              clear()
+            })
+          },
+          { flush: 'sync' }
+        )
       } else {
         register()
       }

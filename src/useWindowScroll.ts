@@ -1,14 +1,30 @@
-import { reactive, toRefs } from 'vue'
+import { ref, readonly, DeepReadonly, Ref } from 'vue'
 import { useEvent } from './useEvent'
+import { throttle } from 'throttle-debounce'
 
-export function useWindowScroll() {
-  const state = reactive({
-    x: 0,
-    y: 0
+export interface IWindowScrollState {
+  x: DeepReadonly<Ref<number>>
+  y: DeepReadonly<Ref<number>>
+  clear: () => void
+}
+
+export function useWindowScroll(delay = 200): IWindowScrollState {
+  const x = ref(0)
+  const y = ref(0)
+  let cb = () => {
+    x.value = window.scrollX
+    y.value = window.scrollY
+  }
+  if (delay) {
+    cb = throttle(delay, cb)
+  }
+  const [, clear] = useEvent('scroll', cb, {
+    passive: true,
+    capture: false
   })
-  useEvent('scroll', () => {
-    state.x = window.scrollX
-    state.y = window.scrollY
-  })
-  return toRefs(state)
+  return {
+    x: readonly(x),
+    y: readonly(y),
+    clear
+  }
 }

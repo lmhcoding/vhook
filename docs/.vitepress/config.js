@@ -26,7 +26,8 @@ const config = {
               {text: 'useTitle', link: '/state/useTitle'},
               {text: 'useToggle', link: '/state/useToggle'},
               {text: 'useBoolean', link: '/state/useBoolean'},
-              {text: 'useHash', link: '/state/useHash'}
+              {text: 'useHash', link: '/state/useHash'},
+              {text: 'useHistory', link: '/state/useHistory'}
             ]
           },
           {

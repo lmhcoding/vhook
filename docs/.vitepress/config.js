@@ -69,7 +69,8 @@ const config = {
             text: 'Sensors',
             collapsable: false,
             children: [
-              {text: 'useWindowScroll', link: '/sensors/useWindowScroll'}
+              {text: 'useWindowScroll', link: '/sensors/useWindowScroll'},
+              {text: 'useResize', link: '/sensors/useResize'}
             ]
           }
         ]

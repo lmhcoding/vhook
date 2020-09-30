@@ -1,8 +1,9 @@
 const globby = require('globby')
-const { upperFirst, camelCase } = require('lodash')
 const path = require('path')
 const fs = require('fs')
 const prettier = require('prettier')
+const upperFirst = require('lodash.upperfirst')
+const camelCase = require('lodash.camelcase')
 
 function normalizeName (file) {
   return upperFirst(camelCase(file))

@@ -71,7 +71,8 @@ const config = {
             children: [
               {text: 'useWindowScroll', link: '/sensors/useWindowScroll'},
               {text: 'useResize', link: '/sensors/useResize'},
-              {text: 'useScroll', link: '/sensors/useScroll'}
+              {text: 'useScroll', link: '/sensors/useScroll'},
+              {text: 'useScrollRef', link: '/sensors/useScrollRef'}
             ]
           }
         ]

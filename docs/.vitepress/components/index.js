@@ -16,6 +16,7 @@ const UseTimeout = defineAsyncComponent(() => import('./useTimeout.vue'))
 const UseTimeoutFn = defineAsyncComponent(() => import('./useTimeoutFn.vue'))
 const UseTitle = defineAsyncComponent(() => import('./useTitle.vue'))
 const UseToggle = defineAsyncComponent(() => import('./useToggle.vue'))
+const UseWindowScroll = defineAsyncComponent(() => import('./useWindowScroll.vue'))
 
 export default function registerComponent(app) {
   app.component('UseBoolean', UseBoolean)
@@ -34,4 +35,5 @@ export default function registerComponent(app) {
   app.component('UseTimeoutFn', UseTimeoutFn)
   app.component('UseTitle', UseTitle)
   app.component('UseToggle', UseToggle)
+  app.component('UseWindowScroll', UseWindowScroll)
 }

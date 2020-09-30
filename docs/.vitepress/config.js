@@ -64,6 +64,13 @@ const config = {
               {text: 'useSessionStorage', link: '/storage/useSessionStorage'},
               {text: 'useStorage', link: '/storage/useStorage'}
             ]
+          },
+          {
+            text: 'Sensors',
+            collapsable: false,
+            children: [
+              {text: 'useWindowScroll', link: '/sensors/useWindowScroll'}
+            ]
           }
         ]
       }

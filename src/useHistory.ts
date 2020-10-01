@@ -22,8 +22,10 @@ function patchHistoryMethod(method: PathMethod): void {
   )
 }
 
-patchHistoryMethod('pushState')
-patchHistoryMethod('replaceState')
+if (typeof window !== 'undefined') {
+  patchHistoryMethod('pushState')
+  patchHistoryMethod('replaceState')
+}
 
 export interface IHistoryState {
   state: any

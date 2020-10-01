@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/lmhcoding/composition-fn/compare/v1.0.0...v1.1.0) (2020-09-29)
+
+
+### Bug Fixes
+
+* **useEvent:** 修复 ref 变化时没有解绑事件的bug ([a5aa835](https://github.com/lmhcoding/composition-fn/commit/a5aa835b14e60a8dfd459cf3d6b2a923bc8c6f10))
+* **useSessionStorage:** 修复没有导出 useSessionStorage 的bug ([644060a](https://github.com/lmhcoding/composition-fn/commit/644060ade92fce43499bb2ffee36db21baf35ae6))
+
+
+### Features
+
+* **useTimeoutFn:** 将 watch 设置为同步执行 ([87a5635](https://github.com/lmhcoding/composition-fn/commit/87a5635001eef0ee25cba6abfed89d9d8617fe63))
+* config vitepress ([cc1a3a5](https://github.com/lmhcoding/composition-fn/commit/cc1a3a5d728c45c365c687e4bb5a2134aa7658fa))
+* config vitepress ([31ba7fc](https://github.com/lmhcoding/composition-fn/commit/31ba7fc3beb62831d9e3647e4acf7224cb4bcc95))
+
 # 1.0.0 (2020-09-27)
 
 

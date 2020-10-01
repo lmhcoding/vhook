@@ -82,7 +82,7 @@ const config = {
   locales: {
     '/': {
       lang: 'ZH-CN',
-      title: 'vHook',
+      title: 'v3hook',
       description: 'Collection of Vue Composition Functions'
     }
   }

@@ -1,6 +1,4 @@
-# # v3hook [![Build Status](https://travis-ci.com/lmhcoding/v3hook.svg?branch=master)](https://travis-ci.com/lmhcoding/v3hook)![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/lmhcoding/v3hook)
-
----
+# v3hook [![Build Status](https://travis-ci.com/lmhcoding/v3hook.svg?branch=master)](https://travis-ci.com/lmhcoding/v3hook)![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/lmhcoding/v3hook)
 
 Collection of Vue Composition Functions
 

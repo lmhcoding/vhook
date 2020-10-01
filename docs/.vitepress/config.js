@@ -1,5 +1,6 @@
 const config = {
   title: 'v3hook',
+  base: '/v3hook/',
   lang: 'ZH-CN',
   description: 'Collection of Vue Composition Functions',
   header: [],

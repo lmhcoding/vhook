@@ -29,7 +29,7 @@ const state = useDebounce(value, delay)
 
 | 参数名 | 描述                 | 类型   |
 | ------ | -------------------- | ------ |
-| state  | 带防抖功能的 ``Ref`` | Ref<T> |
+| state  | 带防抖功能的 ``Ref`` | Ref\<T\> |
 
 
 

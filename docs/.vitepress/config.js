@@ -5,8 +5,8 @@ const config = {
   description: 'Collection of Vue Composition Functions',
   header: [],
   themeConfig: {
-    repo: 'lmhcoding/composition-fn',
-    docsRepo: 'lmhcoding/composition-fn',
+    repo: 'lmhcoding/v3hook',
+    docsRepo: 'lmhcoding/v3hook',
     docsBranch: 'master',
     docsDir: 'docs',
     editLinks: true,
@@ -15,7 +15,7 @@ const config = {
         nav: [
           {
             text: 'Changelog', 
-            link: 'https://github.com/lmhcoding/composition-fn/blob/master/CHANGELOG.md'
+            link: 'https://github.com/lmhcoding/v3hook/blob/master/CHANGELOG.md'
           }
         ],
         sidebar: [

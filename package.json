@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https//github.com/lmhcoding/composition-fn"
+    "url": "https//github.com/lmhcoding/v3hook"
   },
-  "homepage": "https://github.com/lmhcoding/composition-fn#readme",
+  "homepage": "https://github.com/lmhcoding/v3hook#readme",
   "bugs": {
-    "url": "https://github.com/lmhcoding/composition-fn/issues"
+    "url": "https://github.com/lmhcoding/v3hook/issues"
   },
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",

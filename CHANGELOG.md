@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/lmhcoding/composition-fn/compare/v1.1.0...v1.2.0) (2020-10-01)
+
+
+### Bug Fixes
+
+* **useHistory:** patch when is client ([230290d](https://github.com/lmhcoding/composition-fn/commit/230290d9be044c33f08dc947eedccd42d0ac19c8))
+
+
+### Features
+
+* **useResize:** support debounce ([3ccabbf](https://github.com/lmhcoding/composition-fn/commit/3ccabbf54ce05736ee422b81229203b8cd73b036))
+* **useScroll:** support throttle ([cc8d636](https://github.com/lmhcoding/composition-fn/commit/cc8d6368ad0b656cee1fc067e54f75f4ae81703c))
+* **useWindowScroll:** support throttle ([c600d1b](https://github.com/lmhcoding/composition-fn/commit/c600d1b7592b95abc68f439df9c7a8312c57846e))
+
 # [1.1.0](https://github.com/lmhcoding/composition-fn/compare/v1.0.0...v1.1.0) (2020-09-29)
 
 

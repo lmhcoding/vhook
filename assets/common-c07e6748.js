@@ -1,0 +1,1 @@
+import{d as o,c as n}from"./common-db3bf608.js";import{a as t}from"./common-4df17d65.js";function u(u,i){void 0===u&&(u=1e3),void 0===i&&(i=!0);var r,a=n(!1),e=function(){r&&(clearTimeout(r),r=null)},c=function(){a.value=!1,e(),r=window.setTimeout((function(){a.value=!0,r=null}),u)};return i&&c(),t((function(){e()})),{ready:o(a),start:function(){return c()},stop:e}}export{u};

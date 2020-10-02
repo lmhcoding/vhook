@@ -1,0 +1,1 @@
+import{d as t,c as r}from"./common-db3bf608.js";function e(e,n,o){void 0===o&&(o=localStorage);var a=function(t,r,e){var n=t.getItem(r);if(n)try{return JSON.parse(n)}catch(t){}return e}(o,e,n),u=r(null),i=function(t){void 0===t?(o.removeItem(e),u.value=null):(o.setItem(e,JSON.stringify(t)),u.value=t)};return i(a),[t(u),i]}export{e as u};

@@ -1,0 +1,1 @@
+import{d as o,c as a}from"./common-db3bf608.js";import{u as r}from"./common-892b3aac.js";import{t as s}from"./common-b92d4298.js";function m(m,c){void 0===c&&(c=200);var l=a(0),u=a(0),e=function(){v.value&&(l.value=v.value.scrollLeft,u.value=v.value.scrollTop)};c&&(e=s(c,e));var t=r("scroll",e,{capture:!1,passive:!0},m),v=t[0],n=t[1];return[o(l),o(u),n]}export{m as u};

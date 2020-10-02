@@ -2,11 +2,12 @@ import { nextTick } from 'vue'
 import { useDebounceFn } from '../src/useDebounceFn'
 
 let callback: (...rest: any[]) => any
+const identity = (v: string) => v
 
 beforeEach(() => {
   jest.useFakeTimers()
   callback = jest.fn((s: string) => {
-    console.log(s)
+    identity(s)
   })
 })
 

@@ -1,6 +1,6 @@
 import { reactive, toRefs, ToRefs, UnwrapRef } from 'vue'
 import { useEvent } from './useEvent'
-import { def } from './util'
+import { def, isClient } from './util'
 
 type PathMethod = Extract<keyof History, 'replaceState' | 'pushState'>
 
@@ -22,7 +22,7 @@ function patchHistoryMethod(method: PathMethod): void {
   )
 }
 
-if (typeof window !== 'undefined') {
+if (isClient) {
   patchHistoryMethod('pushState')
   patchHistoryMethod('replaceState')
 }

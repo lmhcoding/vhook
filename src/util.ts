@@ -42,3 +42,5 @@ export function tryOnUnmounted(cb: () => any): void {
     onUnmounted(cb)
   }
 }
+
+export const isClient = typeof window !== 'undefined'

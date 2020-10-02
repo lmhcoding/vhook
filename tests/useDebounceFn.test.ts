@@ -1,4 +1,3 @@
-import { nextTick } from 'vue'
 import { useDebounceFn } from '../src/useDebounceFn'
 
 let callback: (...rest: any[]) => any
@@ -42,7 +41,6 @@ test('callback should be called when timeout', async () => {
   debounceFn('1')
   debounceFn('2')
   jest.advanceTimersByTime(200)
-  await nextTick()
   expect(callback!).toHaveBeenCalledTimes(1)
   expect(callback!).toHaveBeenCalledWith('2')
 })

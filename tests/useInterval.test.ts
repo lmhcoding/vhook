@@ -1,5 +1,5 @@
 import { useInterval } from '../src/useInterval'
-import invokeHook from './util/invokeHook'
+import { invokeHook } from './util'
 
 let callback: Function | undefined
 

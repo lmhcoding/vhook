@@ -1,5 +1,5 @@
 import { useTimeout } from '../src/useTimeout'
-import invokeHook from './util/invokeHook'
+import { invokeHook } from './util'
 
 beforeEach(() => {
   jest.useFakeTimers()

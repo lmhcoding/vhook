@@ -1,6 +1,6 @@
 import { Ref } from 'vue'
 import { useStorage } from '../src/useStorage'
-import invokeHook from './util/invokeHook'
+import { invokeHook } from './util'
 
 function testStorageWithSimpleVal (storage: Storage) {
   describe('test useStorage when storage is storage and val is not an Object', () => {

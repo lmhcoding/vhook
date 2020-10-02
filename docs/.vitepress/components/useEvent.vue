@@ -14,7 +14,7 @@
 </template>
 <script>
   import { ref, onMounted } from 'vue'
-  import { useEvent } from 'v3hook'
+  import { useEvent } from 'vhook'
   export default {
     setup () {
       const target = ref(null)

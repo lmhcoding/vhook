@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { useLocalStorage } from 'v3hook'
+  import { useLocalStorage } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

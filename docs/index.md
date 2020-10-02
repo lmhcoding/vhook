@@ -1,8 +1,8 @@
-# ``v3hook``
+# ``vhook``
 
 ---
 
-``v3hook`` 是基于 ``vue3.0`` 的 ``Composition API`` 开发的组合函数库
+``vhook`` 是基于 ``vue3.0`` 的 ``Composition API`` 开发的组合函数库
 
 
 
@@ -15,7 +15,7 @@
 ## Install
 
 ```bash
-npm install v3hook
-yarn add v3hook
+npm install vhook
+yarn add vhook
 ```
 

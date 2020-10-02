@@ -44,7 +44,7 @@ const {x, y} = useWindowScroll(delay)
 </template>
 
 <script>
-  import { useWindowScroll } from 'v3hook'
+  import { useWindowScroll } from 'vhook'
   export default {
     setup () {
       return useWindowScroll()

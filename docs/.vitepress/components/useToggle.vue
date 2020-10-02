@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { useToggle } from 'v3hook'
+  import { useToggle } from 'vhook'
   export default {
     setup () {
       const {

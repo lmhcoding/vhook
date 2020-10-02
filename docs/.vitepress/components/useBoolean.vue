@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { useBoolean } from 'v3hook'
+import { useBoolean } from 'vhook'
 export default {
   setup () {
     const res = useBoolean()

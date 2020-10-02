@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { useScroll } from 'v3hook'
+  import { useScroll } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

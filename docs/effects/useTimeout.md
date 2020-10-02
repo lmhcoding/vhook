@@ -57,7 +57,7 @@ const {ready, start, stop} = useTimeout(delay, immediate)
 </template>
 
 <script>
-  import { useTimeout } from 'v3hook'
+  import { useTimeout } from 'vhook'
   export default {
     setup () {
       const {

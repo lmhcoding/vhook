@@ -3,7 +3,7 @@
   <p>height: {{height}}</p>
 </template>
 <script>
-  import { useResize } from 'v3hook'
+  import { useResize } from 'vhook'
   export default {
     setup () {
       return useResize()

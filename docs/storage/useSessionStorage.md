@@ -45,7 +45,7 @@ const [state, setState] = useSessionStorage(key, val)
 </template>
 
 <script>
-  import { useSessionStorage } from 'v3hook'
+  import { useSessionStorage } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { useStorage } from 'v3hook'
+  import { useStorage } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

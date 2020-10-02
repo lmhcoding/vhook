@@ -56,7 +56,7 @@ const { start, stop } = useTimeoutFn(fn, delay, immediate, clearEffectWhenStop)
 </template>
 <script>
   import { ref } from 'vue'
-  import {useTimeoutFn} from 'v3hook'
+  import {useTimeoutFn} from 'vhook'
   export default {
     setup () {
       const executed = ref(false)

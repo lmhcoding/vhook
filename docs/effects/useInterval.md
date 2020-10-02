@@ -64,7 +64,7 @@ const [clear, start] = useInterval(fn, delay, immediate)
 </template>
 
 <script>
-  import { useInterval } from 'v3hook'
+  import { useInterval } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

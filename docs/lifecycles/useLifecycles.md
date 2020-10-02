@@ -30,7 +30,7 @@ useLifecycles(onMountedCb, onUnmountedCb)
 
 ```vue
 <script>
-  import { useLifecycles } from 'v3hook'
+  import { useLifecycles } from 'vhook'
   export default {
     setup () {
       useLifecycles(

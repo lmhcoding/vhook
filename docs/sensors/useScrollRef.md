@@ -61,7 +61,7 @@ const [target, x, y, clear] = useScrollRef(delay)
 </template>
 
 <script>
-  import { useScrollRef } from 'v3hook'
+  import { useScrollRef } from 'vhook'
   export default {
     setup () {
       const [target, x, y ] = useScrollRef()

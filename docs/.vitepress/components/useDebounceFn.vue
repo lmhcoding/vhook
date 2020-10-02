@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import { useDebounceFn } from 'v3hook'
+  import { useDebounceFn } from 'vhook'
   export default {
     setup () {
       const onClick = useDebounceFn(() => {

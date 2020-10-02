@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import { useHistory } from 'v3hook'
+  import { useHistory } from 'vhook'
   export default {
     setup () {
       return useHistory()

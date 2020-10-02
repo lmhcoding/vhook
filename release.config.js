@@ -36,5 +36,5 @@ module.exports = {
     '@semantic-release/npm',
     '@semantic-release/git'
   ],
-  repositoryUrl: 'https://github.com/lmhcoding/v3hook'
+  repositoryUrl: 'https://github.com/lmhcoding/vhook'
 }

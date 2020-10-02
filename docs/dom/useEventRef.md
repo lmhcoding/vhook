@@ -48,7 +48,7 @@ const [target, clear] = useEventRef(event, cb, options)
 </template>
 
 <script>
-  import { useEventRef }  from 'v3hook'
+  import { useEventRef }  from 'vhook'
   export default {
     setup () {
       const [target] = useEventRef('click', () => {

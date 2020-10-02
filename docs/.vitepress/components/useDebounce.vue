@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { useDebounce } from 'v3hook'
+import { useDebounce } from 'vhook'
 export default {
   setup () {
     const state = useDebounce('test', 3000)

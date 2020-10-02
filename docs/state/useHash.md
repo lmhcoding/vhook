@@ -37,7 +37,7 @@ const { hash, setHash } = useHash()
 </template>
 
 <script>
-  import { useHash } from 'v3hook'
+  import { useHash } from 'vhook'
   export default {
     setup () {
       return useHash()

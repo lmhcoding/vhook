@@ -1,6 +1,6 @@
 {
-  "name": "v3hook",
-  "version": "1.0.0",
+  "name": "vhook",
+  "version": "0.0.1",
   "description": "Vue Composition Function",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https//github.com/lmhcoding/v3hook"
+    "url": "https//github.com/lmhcoding/vhook"
   },
-  "homepage": "https://github.com/lmhcoding/v3hook#readme",
+  "homepage": "https://github.com/lmhcoding/vhook#readme",
   "bugs": {
-    "url": "https://github.com/lmhcoding/v3hook/issues"
+    "url": "https://github.com/lmhcoding/vhook/issues"
   },
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",

@@ -53,7 +53,7 @@ const [x, y, clear] = useScroll(target, delay)
 </template>
 
 <script>
-  import { useScroll } from 'v3hook'
+  import { useScroll } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

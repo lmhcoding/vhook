@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import { useTitle } from 'v3hook'
+  import { useTitle } from 'vhook'
   import { ref } from 'vue'
   export default {
     setup () {

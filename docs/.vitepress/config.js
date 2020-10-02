@@ -1,12 +1,12 @@
 const config = {
-  title: 'v3hook',
-  base: '/v3hook/',
+  title: 'vhook',
+  base: '/vhook/',
   lang: 'ZH-CN',
   description: 'Collection of Vue Composition Functions',
   header: [],
   themeConfig: {
-    repo: 'lmhcoding/v3hook',
-    docsRepo: 'lmhcoding/v3hook',
+    repo: 'lmhcoding/vhook',
+    docsRepo: 'lmhcoding/vhook',
     docsBranch: 'master',
     docsDir: 'docs',
     editLinks: true,
@@ -15,7 +15,7 @@ const config = {
         nav: [
           {
             text: 'Changelog', 
-            link: 'https://github.com/lmhcoding/v3hook/blob/master/CHANGELOG.md'
+            link: 'https://github.com/lmhcoding/vhook/blob/master/CHANGELOG.md'
           }
         ],
         sidebar: [
@@ -83,7 +83,7 @@ const config = {
   locales: {
     '/': {
       lang: 'ZH-CN',
-      title: 'v3hook',
+      title: 'vhook',
       description: 'Collection of Vue Composition Functions'
     }
   }

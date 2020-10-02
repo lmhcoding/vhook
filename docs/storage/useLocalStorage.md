@@ -44,7 +44,7 @@ const [state, setState] = useLocalStorage(key, val)
 </template>
 
 <script>
-  import { useLocalStorage } from 'v3hook'
+  import { useLocalStorage } from 'vhook'
   export default {
     setup () {
       const [value, update] = useLocalStorage('test', 'test')

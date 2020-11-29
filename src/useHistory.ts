@@ -41,8 +41,18 @@ export interface IHistoryState {
 }
 
 function buildState(): IHistoryState {
-  const { state } = window.history
-  const { hash, search, host, hostname, href, origin, pathname, port, protocol } = window.location
+  const { state = null } = isClient ? window.history : {}
+  const {
+    hash = '',
+    search = '',
+    host = '',
+    hostname = '',
+    href = '',
+    origin = '',
+    pathname = '',
+    port = '',
+    protocol = ''
+  } = isClient ? window.location : {}
   return {
     state,
     hash,

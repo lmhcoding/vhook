@@ -11,7 +11,7 @@ export function def<T extends object>(obj: T, key: keyof T, val: any, enumerable
 
 export type Target = Ref<EventTarget | null> | EventTarget | string
 
-export function getTarget(target: Target): EventTarget {
+export function getTarget(target: Target | null): EventTarget | null {
   if (typeof target === 'string') {
     const dom = document.querySelector(target)
     if (!dom && process.env.NODE_ENV !== 'production') {

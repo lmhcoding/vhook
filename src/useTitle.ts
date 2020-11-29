@@ -1,15 +1,15 @@
 import { ref, watchEffect } from 'vue'
-import { tryOnUnmounted } from './util'
+import { tryOnUnmounted, isClient } from './util'
 
 export function useTitle(title: string, restoreOnUnMount = false) {
-  const cache = document.title
+  const cache = isClient ? document.title : ''
   const titleRef = ref(title)
   watchEffect(() => {
-    document.title = titleRef.value
+    isClient && (document.title = titleRef.value)
   })
   if (restoreOnUnMount) {
     tryOnUnmounted(() => {
-      document.title = cache
+      isClient && (document.title = cache)
     })
   }
   const setTitle = (title: string) => {

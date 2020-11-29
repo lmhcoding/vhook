@@ -1,5 +1,5 @@
 import { ref, readonly, DeepReadonly, Ref } from 'vue'
-import { tryOnUnmounted } from './util'
+import { isClient, tryOnUnmounted } from './util'
 
 export interface ITimeoutResult {
   ready: DeepReadonly<Ref<boolean>>
@@ -17,6 +17,7 @@ export function useTimeout(delay = 1000, immediate = true): ITimeoutResult {
     }
   }
   const initTimeout = () => {
+    if (!isClient) return
     ready.value = false
     stop()
     timer = window.setTimeout(() => {

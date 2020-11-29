@@ -1,5 +1,5 @@
 /* eslint-disable no-redeclare */
-import { Target, getTarget } from './util'
+import { Target, getTarget, isClient } from './util'
 import { useLifecycles } from './useLifecycles'
 import { isRef, watchEffect } from 'vue'
 
@@ -16,7 +16,7 @@ export type DocumentEvents = keyof DocumentEventMap
 export type WindowEvents = keyof WindowEventMap
 
 function registerEvent(
-  target: Target,
+  target: Target | null,
   event: string,
   cb: EventListenerOrEventListenerObject,
   options?: HandlerOptions
@@ -33,6 +33,8 @@ export interface IEventTarget {
 }
 
 export type IEventResult = [IEventTarget, () => void]
+
+const defaultTarget = isClient ? window : null
 
 export function useEvent<T extends WindowEvents>(
   event: T,
@@ -55,7 +57,7 @@ export function useEvent(
   event: string,
   cb: EventListenerOrEventListenerObject,
   options?: HandlerOptions,
-  target: Target = window
+  target: Target | null = defaultTarget
 ) {
   if (!event || !cb) {
     return

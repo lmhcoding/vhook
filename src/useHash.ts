@@ -1,5 +1,6 @@
 import { ref, readonly, DeepReadonly, Ref } from 'vue'
 import { useEvent } from './useEvent'
+import { isClient } from './util'
 
 export interface IHashResult {
   hash: DeepReadonly<Ref<string>>
@@ -7,7 +8,7 @@ export interface IHashResult {
 }
 
 export function useHash(): IHashResult {
-  const state = ref(window.location.hash)
+  const state = ref(isClient ? window.location.hash : '')
 
   const setHash = (hash: string) => {
     if (hash !== state.value) {

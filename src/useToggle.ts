@@ -27,7 +27,7 @@ export interface IToggle {
 export const useToggle: IToggle = <
   T extends ToggleParamType = ToggleParamType,
   U extends ToggleParamType = ToggleParamType
-> (
+>(
     defaultValue: T = false as T,
     reverseValue?: U
   ) => {

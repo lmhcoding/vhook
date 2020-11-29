@@ -1,6 +1,7 @@
+const path = require('path')
 const config = {
   title: 'vhook',
-  base: '/vhook/',
+  // base: '/vhook/',
   lang: 'ZH-CN',
   description: 'Collection of Vue Composition Functions',
   header: [],

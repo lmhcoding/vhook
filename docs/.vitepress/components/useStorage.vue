@@ -22,8 +22,9 @@
   import { ref } from 'vue'
   export default {
     setup () {
+      const isClient = typeof window !== 'undefined'
       const [localStorageState, updateLocalStorage] = useStorage('a', 'localStorage')
-      const [sessionStorageState, updateSessionStorage] = useStorage('b', 'sessionStorage', sessionStorage)
+      const [sessionStorageState, updateSessionStorage] = useStorage('b', 'sessionStorage', isClient ? sessionStorage : null)
       const value = ref(localStorageState.value)
       const val = ref(sessionStorageState.value)
       return {
